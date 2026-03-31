@@ -1,6 +1,6 @@
-import { createPlaybackStream, renderProcessedBuffer } from "./audio.js";
-import { FFmpeg } from "../vendor/ffmpeg/ffmpeg-esm/index.js";
-import { fetchFile } from "../vendor/ffmpeg/util-esm/index.js";
+import { createPlaybackStream, renderProcessedBuffer } from "./audio.js?v=pwa6";
+import { FFmpeg } from "./ffmpeg/ffmpeg-api.js?v=pwa6";
+import { fetchFile } from "./ffmpeg/fetch-file.js?v=pwa6";
 
 let ffmpegApiPromise = null;
 
@@ -14,8 +14,8 @@ export async function ensureFfmpeg() {
 async function loadFfmpegApi() {
   const ffmpeg = new FFmpeg();
   await ffmpeg.load({
-    coreURL: new URL("../vendor/ffmpeg/ffmpeg-core.js", import.meta.url).toString(),
-    wasmURL: new URL("../vendor/ffmpeg/ffmpeg-core.wasm", import.meta.url).toString()
+    coreURL: new URL("./ffmpeg/ffmpeg-core.js", import.meta.url).toString(),
+    wasmURL: new URL("./ffmpeg/ffmpeg-core.wasm", import.meta.url).toString()
   });
 
   return { ffmpeg, fetchFile };
