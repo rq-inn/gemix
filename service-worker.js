@@ -1,4 +1,4 @@
-const CACHE_NAME = "gemix-v7";
+const CACHE_NAME = "gemix-v8";
 const APP_SHELL_FILES = [
   "./",
   "./index.html",
@@ -19,8 +19,7 @@ const APP_SHELL_FILES = [
   "./js/main.js?v=pwa5",
   "./js/messages.js",
   "./js/state.js",
-  "./js/video.js",
-  "./js/video-pwa5.js?v=pwa5",
+  "./js/video.js?v=pwa5",
   "./js/ffmpeg/fetch-file.js",
   "./js/ffmpeg/fetch-file-pwa5.js?v=pwa5",
   "./js/ffmpeg/ffmpeg-api.js",
