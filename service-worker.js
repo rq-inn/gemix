@@ -1,4 +1,4 @@
-const CACHE_NAME = "gemix-v6";
+const CACHE_NAME = "gemix-v7";
 const APP_SHELL_FILES = [
   "./",
   "./index.html",
@@ -11,12 +11,12 @@ const APP_SHELL_FILES = [
   "./image/icon256.png",
   "./image/icon512.png",
   "./image/rq-inn-logo.png",
-  "./js/app.js",
+  "./js/app.js?v=pwa5",
   "./js/audio.js",
   "./js/csv.js",
   "./js/device.js",
   "./js/language.js",
-  "./js/main.js",
+  "./js/main.js?v=pwa5",
   "./js/messages.js",
   "./js/state.js",
   "./js/video.js",
