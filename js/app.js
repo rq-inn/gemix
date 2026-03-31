@@ -1,9 +1,9 @@
-import { decodeAudioFile, clampTrimRange, createTrimmedPreviewUrl, drawWaveform } from "./audio.js";
-import { detectInitialLanguageNumber, loadLanguages } from "./language.js";
-import { getMessage, loadMessages } from "./messages.js";
-import { createState } from "./state.js";
-import { renderApp, escapeHtml } from "./ui/screens.js";
-import { ensureFfmpeg, generateMp4 } from "./video.js";
+import { decodeAudioFile, clampTrimRange, createTrimmedPreviewUrl, drawWaveform } from "./audio.js?v=pwa4";
+import { detectInitialLanguageNumber, loadLanguages } from "./language.js?v=pwa4";
+import { getMessage, loadMessages } from "./messages.js?v=pwa4";
+import { createState } from "./state.js?v=pwa4";
+import { renderApp, escapeHtml } from "./ui/screens.js?v=pwa4";
+import { ensureFfmpeg, generateMp4 } from "./video.js?v=pwa4";
 
 let ffmpegWarmupPromise = null;
 let previewController = null;
