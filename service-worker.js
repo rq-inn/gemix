@@ -1,4 +1,4 @@
-const CACHE_NAME = "gemix-v1";
+const CACHE_NAME = "gemix-v2";
 const APP_SHELL_FILES = [
   "./",
   "./index.html",
@@ -21,18 +21,18 @@ const APP_SHELL_FILES = [
   "./js/state.js",
   "./js/video.js",
   "./js/ui/screens.js",
-  "./vendor/ffmpeg/ffmpeg-core.js",
-  "./vendor/ffmpeg/ffmpeg-core.wasm",
-  "./vendor/ffmpeg/ffmpeg-esm/classes.js",
-  "./vendor/ffmpeg/ffmpeg-esm/const.js",
-  "./vendor/ffmpeg/ffmpeg-esm/errors.js",
-  "./vendor/ffmpeg/ffmpeg-esm/index.js",
-  "./vendor/ffmpeg/ffmpeg-esm/utils.js",
-  "./vendor/ffmpeg/ffmpeg-esm/worker.js",
-  "./vendor/ffmpeg/util-esm/const.js",
-  "./vendor/ffmpeg/util-esm/errors.js",
-  "./vendor/ffmpeg/util-esm/index.js",
-  "./vendor/ffmpeg/util-esm/types.js"
+  "./js/ffmpeg/ffmpeg-core.js",
+  "./js/ffmpeg/ffmpeg-core.wasm",
+  "./js/ffmpeg/ffmpeg-esm/classes.js",
+  "./js/ffmpeg/ffmpeg-esm/const.js",
+  "./js/ffmpeg/ffmpeg-esm/errors.js",
+  "./js/ffmpeg/ffmpeg-esm/index.js",
+  "./js/ffmpeg/ffmpeg-esm/utils.js",
+  "./js/ffmpeg/ffmpeg-esm/worker.js",
+  "./js/ffmpeg/util-esm/const.js",
+  "./js/ffmpeg/util-esm/errors.js",
+  "./js/ffmpeg/util-esm/index.js",
+  "./js/ffmpeg/util-esm/types.js"
 ];
 
 self.addEventListener("install", (event) => {
