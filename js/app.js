@@ -31,6 +31,12 @@ function render(root, stateStore, state) {
   const t = (key) => getMessage(state.messages, key, state.languageNumber);
   const statusKey = state.errorKey || state.statusKey;
   const statusClass = state.errorKey ? "status is-error" : state.statusKey === "download_ready" ? "status is-success" : "status";
+  const statusHtml = `
+    <div class="${statusClass}">
+      <div>${escapeHtml(statusKey ? t(statusKey) : "")}</div>
+      ${state.statusDetail ? `<div>${escapeHtml(state.statusDetail)}</div>` : ""}
+    </div>
+  `;
   const languageOptions = state.languages.map((language) => `
     <option value="${escapeHtml(language.Number)}" ${language.Number === state.languageNumber ? "selected" : ""}>
       ${escapeHtml(language.language)}
@@ -67,7 +73,7 @@ function render(root, stateStore, state) {
           </label>
           <div class="file-name">${escapeHtml(state.audioFileName || "-")}</div>
         </div>
-        <div class="${statusClass}">${escapeHtml(statusKey ? t(statusKey) : t(state.audioFile ? "audio_confirm" : "audio_waiting"))}</div>
+        ${statusKey || state.statusDetail ? statusHtml : `<div class="${statusClass}">${escapeHtml(t(state.audioFile ? "audio_confirm" : "audio_waiting"))}</div>`}
         ${state.audioFile ? `
           <div class="dual-actions">
             <button class="button-primary" data-action="confirm-audio">${escapeHtml(t("yes"))}</button>
@@ -106,7 +112,7 @@ function render(root, stateStore, state) {
           <span>${escapeHtml(t("start_time"))}: ${formatTime(state.trimStart)}</span>
           <span>${escapeHtml(t("end_time"))}: ${formatTime(state.trimEnd)}</span>
         </div>
-        <div class="${statusClass}">${escapeHtml(statusKey ? t(statusKey) : t("state_ready_trim"))}</div>
+        ${statusKey || state.statusDetail ? statusHtml : `<div class="${statusClass}">${escapeHtml(t("state_ready_trim"))}</div>`}
         <div class="triple-actions">
           <button class="button-secondary" data-action="preview">${escapeHtml(t("preview"))}</button>
           <button class="button-toggle ${state.fadeIn ? "is-active" : ""}" data-action="toggle-fade-in">${escapeHtml(t("fade_in"))}</button>
@@ -140,7 +146,7 @@ function render(root, stateStore, state) {
             ${state.imageDataUrl ? `<img class="image-preview" src="${escapeHtml(state.imageDataUrl)}" alt="">` : `<div class="image-preview"></div>`}
           </div>
         </div>
-        <div class="${statusClass}">${escapeHtml(statusKey ? t(statusKey) : t(state.imageFile ? "image_confirm" : "image_waiting"))}</div>
+        ${statusKey || state.statusDetail ? statusHtml : `<div class="${statusClass}">${escapeHtml(t(state.imageFile ? "image_confirm" : "image_waiting"))}</div>`}
         <div class="dual-actions">
           <button class="button-secondary" data-action="back-trim">${escapeHtml(t("back"))}</button>
           <button class="button-primary" data-action="confirm-image" ${state.imageFile ? "" : "disabled"}>${escapeHtml(t("yes"))}</button>
@@ -165,7 +171,7 @@ function render(root, stateStore, state) {
           <input id="waveformToggle" type="checkbox" ${state.showWaveform ? "checked" : ""}>
           <span>${escapeHtml(t("waveform_toggle"))}</span>
         </label>
-        <div class="${statusClass}">${escapeHtml(statusKey ? t(statusKey) : t("state_ready_final"))}</div>
+        ${statusKey || state.statusDetail ? statusHtml : `<div class="${statusClass}">${escapeHtml(t("state_ready_final"))}</div>`}
         <div class="dual-actions">
           <button class="button-primary" data-action="generate" ${state.generating ? "disabled" : ""}>${escapeHtml(t("generate"))}</button>
           <button class="button-secondary" data-action="back-image" ${state.generating ? "disabled" : ""}>${escapeHtml(t("back"))}</button>
@@ -201,24 +207,24 @@ function bindEvents(root, stateStore, state) {
   });
 
   root.querySelector("[data-action='go-audio']")?.addEventListener("click", () => {
-    stateStore.set({ screen: "audio", statusKey: "audio_waiting", errorKey: "" });
+    stateStore.set({ screen: "audio", statusKey: "audio_waiting", errorKey: "", statusDetail: "" });
   });
 
   root.querySelector("[data-action='home']")?.addEventListener("click", () => {
-    stateStore.set({ screen: "home", statusKey: "", errorKey: "" });
+    stateStore.set({ screen: "home", statusKey: "", errorKey: "", statusDetail: "" });
   });
 
   root.querySelector("[data-action='confirm-audio']")?.addEventListener("click", () => {
     if (!state.audioBuffer) {
-      stateStore.set({ errorKey: "error_missing_audio", statusKey: "" });
+      stateStore.set({ errorKey: "error_missing_audio", statusKey: "", statusDetail: "" });
       return;
     }
-    stateStore.set({ screen: "trim", statusKey: "state_ready_trim", errorKey: "" });
+    stateStore.set({ screen: "trim", statusKey: "state_ready_trim", errorKey: "", statusDetail: "" });
   });
 
   root.querySelector("[data-action='reject-audio']")?.addEventListener("click", () => {
     stateStore.resetAudioSelection();
-    stateStore.set({ screen: "audio", statusKey: "audio_waiting", errorKey: "" });
+    stateStore.set({ screen: "audio", statusKey: "audio_waiting", errorKey: "", statusDetail: "" });
   });
 
   root.querySelector("[data-action='preview']")?.addEventListener("click", async () => {
@@ -226,51 +232,51 @@ function bindEvents(root, stateStore, state) {
       await startPreview(root, state);
     } catch (error) {
       console.error(error);
-      stateStore.set({ errorKey: "error_preview", statusKey: "" });
+      stateStore.set({ errorKey: "error_preview", statusKey: "", statusDetail: "" });
     }
   });
 
   root.querySelector("[data-action='toggle-fade-in']")?.addEventListener("click", () => {
-    stateStore.set({ fadeIn: !state.fadeIn, errorKey: "", statusKey: "state_ready_trim" });
+    stateStore.set({ fadeIn: !state.fadeIn, errorKey: "", statusKey: "state_ready_trim", statusDetail: "" });
   });
 
   root.querySelector("[data-action='toggle-fade-out']")?.addEventListener("click", () => {
-    stateStore.set({ fadeOut: !state.fadeOut, errorKey: "", statusKey: "state_ready_trim" });
+    stateStore.set({ fadeOut: !state.fadeOut, errorKey: "", statusKey: "state_ready_trim", statusDetail: "" });
   });
 
   root.querySelector("[data-action='adopt-trim']")?.addEventListener("click", () => {
-    stateStore.set({ screen: "image", statusKey: "image_waiting", errorKey: "" });
+    stateStore.set({ screen: "image", statusKey: "image_waiting", errorKey: "", statusDetail: "" });
   });
 
   root.querySelector("[data-action='return-audio']")?.addEventListener("click", () => {
-    stateStore.set({ screen: "audio", statusKey: state.audioFile ? "audio_confirm" : "audio_waiting", errorKey: "" });
+    stateStore.set({ screen: "audio", statusKey: state.audioFile ? "audio_confirm" : "audio_waiting", errorKey: "", statusDetail: "" });
   });
 
   root.querySelector("[data-action='back-trim']")?.addEventListener("click", () => {
-    stateStore.set({ screen: "trim", statusKey: "state_ready_trim", errorKey: "" });
+    stateStore.set({ screen: "trim", statusKey: "state_ready_trim", errorKey: "", statusDetail: "" });
   });
 
   root.querySelector("[data-action='confirm-image']")?.addEventListener("click", () => {
     if (!state.imageFile) {
-      stateStore.set({ errorKey: "error_missing_image", statusKey: "" });
+      stateStore.set({ errorKey: "error_missing_image", statusKey: "", statusDetail: "" });
       return;
     }
-    stateStore.set({ screen: "final", statusKey: "state_ready_final", errorKey: "" });
+    stateStore.set({ screen: "final", statusKey: "state_ready_final", errorKey: "", statusDetail: "" });
     warmupFfmpeg(stateStore);
   });
 
   root.querySelector("[data-action='reject-image']")?.addEventListener("click", () => {
     stateStore.resetImageSelection();
-    stateStore.set({ screen: "image", statusKey: "image_waiting", errorKey: "" });
+    stateStore.set({ screen: "image", statusKey: "image_waiting", errorKey: "", statusDetail: "" });
   });
 
   root.querySelector("[data-action='back-image']")?.addEventListener("click", () => {
-    stateStore.set({ screen: "image", statusKey: state.imageFile ? "image_confirm" : "image_waiting", errorKey: "" });
+    stateStore.set({ screen: "image", statusKey: state.imageFile ? "image_confirm" : "image_waiting", errorKey: "", statusDetail: "" });
   });
 
   root.querySelector("[data-action='generate']")?.addEventListener("click", async () => {
     syncFinalInputs(root, stateStore);
-    stateStore.set({ generating: true, statusKey: "loading_engine", errorKey: "" });
+    stateStore.set({ generating: true, statusKey: "loading_engine", errorKey: "", statusDetail: "" });
     try {
       await (ffmpegWarmupPromise || ensureFfmpeg()).catch((error) => {
         console.error(error);
@@ -287,7 +293,8 @@ function bindEvents(root, stateStore, state) {
         imageDataUrl: currentState.imageDataUrl,
         title: currentState.title.trim(),
         showWaveform: currentState.showWaveform,
-        onPhase: (phaseKey) => stateStore.set({ statusKey: phaseKey, errorKey: "", generating: true })
+        onPhase: (phaseKey) => stateStore.set({ statusKey: phaseKey, errorKey: "", generating: true, statusDetail: "" }),
+        onProgress: (detail) => stateStore.set({ statusDetail: detail, errorKey: "", generating: true })
       });
 
       const safeTitle = (currentState.title || "gemix").trim().replace(/[\\/:*?"<>|]+/g, "_") || "gemix";
@@ -300,7 +307,7 @@ function bindEvents(root, stateStore, state) {
       anchor.remove();
       URL.revokeObjectURL(url);
 
-      stateStore.set({ generating: false, statusKey: "download_ready", errorKey: "" });
+      stateStore.set({ generating: false, statusKey: "download_ready", errorKey: "", statusDetail: "" });
       setTimeout(() => {
         stateStore.resetAfterDownload();
       }, 500);
@@ -313,7 +320,8 @@ function bindEvents(root, stateStore, state) {
           : error.message === "recording-unsupported"
             ? "error_recording"
             : "error_generate",
-        statusKey: ""
+        statusKey: "",
+        statusDetail: ""
       });
     }
   });
@@ -359,7 +367,7 @@ function bindEvents(root, stateStore, state) {
 
 async function handleAudioFile(file, stateStore) {
   if (!/\.mp3$/i.test(file.name) && file.type !== "audio/mpeg") {
-    stateStore.set({ errorKey: "error_invalid_audio", statusKey: "" });
+    stateStore.set({ errorKey: "error_invalid_audio", statusKey: "", statusDetail: "" });
     return;
   }
 
@@ -373,17 +381,18 @@ async function handleAudioFile(file, stateStore) {
       trimStart: 0,
       trimEnd: audioBuffer.duration,
       errorKey: "",
-      statusKey: "audio_confirm"
+      statusKey: "audio_confirm",
+      statusDetail: ""
     });
   } catch (error) {
     console.error(error);
-    stateStore.set({ errorKey: "error_audio_load", statusKey: "" });
+    stateStore.set({ errorKey: "error_audio_load", statusKey: "", statusDetail: "" });
   }
 }
 
 async function handleImageFile(file, stateStore) {
   if (!/\.(jpe?g|png)$/i.test(file.name) && !["image/jpeg", "image/png"].includes(file.type)) {
-    stateStore.set({ errorKey: "error_invalid_image", statusKey: "" });
+    stateStore.set({ errorKey: "error_invalid_image", statusKey: "", statusDetail: "" });
     return;
   }
 
@@ -394,11 +403,12 @@ async function handleImageFile(file, stateStore) {
       imageFileName: file.name,
       imageDataUrl: dataUrl,
       errorKey: "",
-      statusKey: "image_confirm"
+      statusKey: "image_confirm",
+      statusDetail: ""
     });
   } catch (error) {
     console.error(error);
-    stateStore.set({ errorKey: "error_image_load", statusKey: "" });
+    stateStore.set({ errorKey: "error_image_load", statusKey: "", statusDetail: "" });
   }
 }
 
@@ -408,7 +418,8 @@ function updateTrimRange(stateStore, start, end, duration) {
     trimStart: range.start,
     trimEnd: range.end,
     errorKey: "",
-    statusKey: "state_ready_trim"
+    statusKey: "state_ready_trim",
+    statusDetail: ""
   });
 }
 
