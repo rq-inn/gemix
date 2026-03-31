@@ -1,0 +1,53 @@
+key,name_L1,name_L2,name_L3
+app_name,GemiX,GemiX,GemiX
+app_description,Turn one MP3 and one image into a vertical MP4 that is ready to post on X.,MP3 1つと画像 1枚から、Xに載せやすい縦長MP4を作成します。,將一個 MP3 和一張圖片轉成適合發佈到 X 的直式 MP4。
+start,Start,スタート,開始
+language_label,Language,言語,語言
+screen_audio_select_title,Please choose an audio file,音声ファイルを選んでください,請選擇音訊檔案
+screen_audio_trim_title,Trim the part of the audio file you want,音声ファイルの必要な部分を切り出します,剪出音訊檔案中需要的部分
+screen_image_select_title,Please choose an image file,画像ファイルを選んでください,請選擇圖片檔案
+screen_final_title,Final settings and export,最終設定と生成,最終設定與輸出
+drop_mp3,Drag MP3 here,ここにドロップしてください,將音訊拖曳到此處
+drop_image,Drag image here,ここにドロップしてください,將圖片拖曳到此處
+choose_mp3,Choose MP3,MP3を選択,選擇 MP3
+choose_image,Choose Image,JPG / PNG を選択,選擇圖片
+audio_waiting,Waiting for an MP3 file.,MP3ファイルを待機しています。,正在等待 MP3 檔案。
+audio_confirm,MP3 has been selected. Is this okay?,MP3が選択されました。これでいいですか？,已選擇 MP3。這樣可以嗎？
+image_waiting,Waiting for an image file.,画像ファイルを待機しています。,正在等待圖片檔案。
+image_confirm,Image file has been selected. Is this okay?,画像ファイルが選択されました。これでいいですか？,已選擇圖片檔案。這樣可以嗎？
+back,Back,戻る,返回
+next,Next,次へ,下一步
+yes,Yes,はい,是
+no,No,いいえ,否
+adopt,Apply,採用,採用
+return_to_select,Back to selection,選択へ戻る,返回選擇
+preview,Preview,試聴,試聽
+fade_in,Fade In,フェードイン,淡入
+fade_out,Fade Out,フェードアウト,淡出
+start_time,Start time,始点,開始點
+end_time,End time,終点,結束點
+selected_file,Selected file,選択ファイル,已選檔案
+title_label,Title,タイトル,標題
+title_placeholder,Optional title for the video,動画に入れる任意タイトル,輸入影片標題（選填）
+waveform_toggle,Show waveform,波形表示,顯示波形
+generate,Generate MP4,MP4生成,產生 MP4
+generating,Generating MP4. Please wait...,MP4を生成しています。しばらくお待ちください...,正在產生 MP4，請稍候...
+download_ready,Your MP4 is ready. Download will start automatically.,MP4の準備ができました。ダウンロードを開始します。,MP4 已準備完成，將自動開始下載。
+audio_range_help,Adjust the start and end points for the section you want to use.,使いたい区間の始点と終点を調整してください。,調整想使用區段的開始與結束位置。
+image_help,Use one JPG or PNG image as the main visual.,JPGまたはPNGを1枚選んでメインビジュアルにします。,選擇一張 JPG 或 PNG 作為主視覺。
+final_help,Add a title if needed and choose whether to show the waveform.,必要ならタイトルを入力し、波形を表示するか選んでください。,如有需要可輸入標題，並選擇是否顯示波形。
+error_invalid_audio,Please select an MP3 file.,MP3ファイルを選択してください。,請選擇 MP3 檔案。
+error_invalid_image,Please select a JPG or PNG image.,JPG または PNG 画像を選択してください。,請選擇 JPG 或 PNG 圖片。
+error_audio_load,Failed to load the audio file.,音声ファイルの読み込みに失敗しました。,讀取音訊檔案失敗。
+error_image_load,Failed to load the image file.,画像ファイルの読み込みに失敗しました。,讀取圖片檔案失敗。
+error_generate,Failed to generate the MP4.,MP4の生成に失敗しました。,產生 MP4 失敗。
+error_missing_audio,Please choose an MP3 file before continuing.,次に進む前に MP3 ファイルを選択してください。,進入下一步之前請先選擇 MP3 檔案。
+error_missing_image,Please choose an image file before continuing.,次に進む前に画像ファイルを選択してください。,進入下一步之前請先選擇圖片檔案。
+error_ffmpeg,The MP4 engine could not be loaded.,MP4生成エンジンを読み込めませんでした。,無法載入 MP4 產生引擎。
+error_preview,Preview playback failed.,試聴に失敗しました。,試聽失敗。
+state_ready_trim,Adjust the section, fades, and preview as needed.,必要に応じて区間やフェード、試聴を調整してください。,請視需要調整區段、淡入淡出與試聽。
+state_ready_final,Ready to generate your vertical MP4.,縦長MP4を生成する準備ができました。,已準備好產生直式 MP4。
+loading_engine,Loading the MP4 engine...,MP4生成エンジンを読み込んでいます...,正在載入 MP4 產生引擎...
+rendering_video,Rendering the video frames...,動画フレームを生成しています...,正在產生影片畫面...
+encoding_mp4,Encoding MP4...,MP4へ変換しています...,正在轉換成 MP4...
+error_recording,Video recording is not supported in this browser.,このブラウザでは動画録画に対応していません。,此瀏覽器不支援影片錄製。
