@@ -1,4 +1,4 @@
-const CACHE_NAME = "gemix-v10";
+const CACHE_NAME = "gemix-v11";
 const APP_SHELL_FILES = [
   "./",
   "./index.html",
@@ -23,19 +23,19 @@ const APP_SHELL_FILES = [
   "./js/video.js?v=pwa6",
   "./js/ffmpeg/fetch-file.js?v=pwa6",
   "./js/ffmpeg/ffmpeg-api.js?v=pwa6",
-  "./js/ffmpeg/worker.js",
-  "./js/ffmpeg/ffmpeg-core.js",
-  "./js/ffmpeg/ffmpeg-core.wasm",
-  "./js/ffmpeg/ffmpeg-esm/classes.js",
-  "./js/ffmpeg/ffmpeg-esm/const.js",
-  "./js/ffmpeg/ffmpeg-esm/errors.js",
-  "./js/ffmpeg/ffmpeg-esm/index.js",
-  "./js/ffmpeg/ffmpeg-esm/utils.js",
-  "./js/ffmpeg/ffmpeg-esm/worker.js",
-  "./js/ffmpeg/util-esm/const.js",
-  "./js/ffmpeg/util-esm/errors.js",
-  "./js/ffmpeg/util-esm/index.js",
-  "./js/ffmpeg/util-esm/types.js"
+  "./js/ffmpeg/worker.js?v=pwa6",
+  "./js/ffmpeg/ffmpeg-core.js?v=pwa6",
+  "./js/ffmpeg/ffmpeg-core.wasm?v=pwa6",
+  "./js/ffmpeg/ffmpeg-esm/classes.js?v=pwa6",
+  "./js/ffmpeg/ffmpeg-esm/const.js?v=pwa6",
+  "./js/ffmpeg/ffmpeg-esm/errors.js?v=pwa6",
+  "./js/ffmpeg/ffmpeg-esm/index.js?v=pwa6",
+  "./js/ffmpeg/ffmpeg-esm/utils.js?v=pwa6",
+  "./js/ffmpeg/ffmpeg-esm/worker.js?v=pwa6",
+  "./js/ffmpeg/util-esm/const.js?v=pwa6",
+  "./js/ffmpeg/util-esm/errors.js?v=pwa6",
+  "./js/ffmpeg/util-esm/index.js?v=pwa6",
+  "./js/ffmpeg/util-esm/types.js?v=pwa6"
 ];
 
 self.addEventListener("install", (event) => {
