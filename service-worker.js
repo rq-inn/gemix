@@ -1,4 +1,4 @@
-const CACHE_NAME = "gemix-v3";
+const CACHE_NAME = "gemix-v4";
 const APP_SHELL_FILES = [
   "./",
   "./index.html",
