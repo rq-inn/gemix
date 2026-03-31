@@ -3,7 +3,7 @@ import { detectInitialLanguageNumber, loadLanguages } from "./language.js?v=pwa4
 import { getMessage, loadMessages } from "./messages.js?v=pwa4";
 import { createState } from "./state.js?v=pwa4";
 import { renderApp, escapeHtml } from "./ui/screens.js?v=pwa4";
-import { ensureFfmpeg, generateMp4 } from "./video.js?v=pwa4";
+import { ensureFfmpeg, generateMp4 } from "./video-pwa5.js";
 
 let ffmpegWarmupPromise = null;
 let previewController = null;
